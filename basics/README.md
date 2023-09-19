@@ -1,1 +1,1 @@
-This is script about basics
+This is my directory about shell basic
