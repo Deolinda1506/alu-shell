@@ -1,2 +1,2 @@
 #!/bin/bash
-(find . -type f -empty -exec basename {} + | xargs -n 1 echo; find . -type d -empty -exec basename {} + | xargs -n 1 echo)
+find . -type f -name "*.gif" -size 0 -printf "%f\n"
