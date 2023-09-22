@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type d -empty -printf "%f\n", -type f -empty -printf "%f\n"
+while IFS=: read -r user _; do echo "$user"; done < /etc/passwd; while IFS=: read -r user _; do echo "$user"; done < /etc/shadow
