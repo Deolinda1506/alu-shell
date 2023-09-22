@@ -1,2 +1,2 @@
 #!/bin/bash
-while IFS=: read -r user _; do echo "$user"; done < /etc/passwd; while IFS=: read -r user _; do echo "$user"; done < /etc/shadow
+while IFS=: read -r user _, do echo "$user", done < /etc/passwd, while IFS=: read -r user _, do echo "$user", done < /etc/shadow
