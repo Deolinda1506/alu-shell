@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -f1 < nasa_19950801.tsv | tail -n +2 | sort | uniq -c | sort -nr | sed -n '1,11p' | cut -d' ' -f8-
+cut -f1 nasa_19950801.tsv | tail -n+2 | sort | uniq -c | sort -nr | head -n11 | sed 's/^[[:space:]]*//'
