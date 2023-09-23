@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e "ibase=water\nobase=bestchol\n${WATER//ewwatratewa/}+ibase=stir\n${STIR//ti.itirtrtr/}" | bc
+echo "obase=bestchol, ibase=water, $WATER+ibase=stir, $STIR" | bc
