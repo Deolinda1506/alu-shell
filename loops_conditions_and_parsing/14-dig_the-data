@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
-# This script processes an Apache log file and displays visitor counts by IP and HTTP status code.
+# This script groups visitors by IP and HTTP status code and displays the data.
 
-# Use awk to process the log file and count occurrences by IP and status code
-awk '{ ip_count[$1][$9]++ } END { PROCINFO["sorted_in"]="@val_num_desc"; for (ip in ip_count) { for (status in ip_count[ip]) { printf "%5d %s %s\n", ip_count[ip][status], ip, status } } }' /path/to/apache_log_file | head -n 10
+# Use awk to process the Apache log file
+awk '{
+    ip=$1           # IP address is in the first field
+    status=$9       # HTTP status code is in the ninth field
+    ip_status=ip " " status  # Combine IP and status into one string
+
+    # Use an associative array to count occurrences of each IP and status combination
+    count[ip_status]++
+}
+END {
+    # Iterate over the associative array and print the results in the specified format
+    for (key in count) {
+        printf "%5d %s\n", count[key], key
+    }
+}' /path/to/your/apache_log_file.log | sort -rn | head -n 10
