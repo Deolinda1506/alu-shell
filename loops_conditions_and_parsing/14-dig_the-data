@@ -1,4 +1,5 @@
-#!/bin/bash
-# Parse the Apache log file and use awk to group visitors by IP and HTTP status code
-# Display the data in the specified format and order it by the number of occurrences
-awk '{print $1, $9}' apache-access.log | sort | uniq -c | sort -nr | awk '{print $2, $3, $1}' | head -n 10
+#!/usr/bin/env bash
+# This script processes an Apache log file and displays visitor counts by IP and HTTP status code.
+
+# Use awk to process the log file, group by IP and HTTP status code, and count occurrences
+awk '{ ip_count[$1][$9]++ } END { for (ip in ip_count) { for (status in ip_count[ip]) { print ip_count[ip][status], ip, status } } }' /path/to/apache_log_file | sort -nr
