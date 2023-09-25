@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-#Parse the Apache log and use awk to group by IP and HTTP status code
-awk '{ ip[$1" "$9]++ } END { for (key in ip) { split(key, arr, " "); print ip[key], arr[1], arr[2] } }' apache-access.log \
-    | sort -nr \
-    | head -n 10
+#!/bin/bash
+# Parse the Apache log file and use awk to group visitors by IP and HTTP status code
+# Display the data in the specified format and order it by the number of occurrences
+awk '{print $1, $9}' apache-access.log | sort | uniq -c | sort -nr | awk '{print $2, $3, $1}' | head -n 10
