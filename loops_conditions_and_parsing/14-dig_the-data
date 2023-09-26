@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Parse the Apache log file and use awk to group by IP and HTTP status code
 awk '{
     ip = $1
