@@ -2,17 +2,4 @@
 # This script groups visitors by IP and HTTP status code and displays the data.
 
 # Use awk to process the Apache log file
-awk '{
-    ip=$1           # IP address is in the first field
-    status=$9       # HTTP status code is in the ninth field
-    ip_status=ip " " status  # Combine IP and status into one string
-
-    # Use an associative array to count occurrences of each IP and status combination
-    count[ip_status]++
-}
-END {
-    # Iterate over the associative array and print the results in the specified format
-    for (key in count) {
-        printf "%5d %s\n", count[key], key
-    }
-}' /path/to/your/apache_log_file.log | sort -rn | head -n 10
+awk '{ ip[$1][$9]++ } END { for (ip_addr in ip) { for (status_code in ip[ip_addr]) { print ip[ip_addr][status_code], ip_addr, status_code } } }' /path/to/your/apache_log_file.log | sort -rn | head -n 10
