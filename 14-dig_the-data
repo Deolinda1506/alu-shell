@@ -1,2 +1,16 @@
 #!/usr/bin/env bash
-awk '{print $1,$9}' apache-access.log | sort -V | uniq -c | sort -n | perl -e 'print reverse <>'
+# Use awk to process the Apache log file and generate the report
+awk '{
+    ip = $1
+    http_code = $9
+    ip_http_count[ip, http_code]++
+}
+END {
+    for (key in ip_http_count) {
+        split(key, indices, SUBSEP)
+        ip = indices[1]
+        http_code = indices[2]
+        count = ip_http_count[key]
+        printf "%5d %s %s\n", count, ip, http_code
+    }
+}' awk '{print $1,$9}' apache-access.log | sort -k1,1nr | head -n 10
