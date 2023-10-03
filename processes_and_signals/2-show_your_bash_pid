@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# This script displays lines containing the word 'bash' and its PID
+# This script displays the PID of your Bash process
 
-ps aux | grep bash | grep -v grep
-# The following line is to ignore SC2009 (shellcheck)
 # shellcheck disable=SC2009
-ps aux | grep bash | grep -v grep | awk '{print $2}'
+ps aux | grep "bash" | grep -v "grep" | awk '{print $2}'
