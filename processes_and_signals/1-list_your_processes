@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Ce script affiche les noms d'utilisateur et les noms de commande des processus en cours d'exécution
+# Ce script affiche les noms d'utilisateur des processus en cours d'exécution
 
-ps aux | awk 'NR > 1 {printf "%-8s %-8s\n", $1, $11}'
+ps aux | awk 'NR > 1 {print $1}' | uniq | head -n 2
