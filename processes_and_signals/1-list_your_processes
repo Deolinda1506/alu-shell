@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# This script displays a list of currently running processes with the expected format
+# This script displays a compact list of currently running processes
 
-ps aux | awk '{print $1, $9, $11}'
+ps aux | awk '{print $1, $9}'
