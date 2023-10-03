@@ -1,10 +1,3 @@
 #!/usr/bin/env bash
 # This script displays a list of currently running processes
-
-# Define the header
-echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
-
-# Use the ps command to list processes with full information, sorted by PID
-# Filter out the header and show all processes, including those without a TTY
-# Format the output to display the required information
-ps axo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,comm --sort=pid | grep -v "COMMAND"
+ps axo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --sort=start_time | grep -v "COMMAND"
