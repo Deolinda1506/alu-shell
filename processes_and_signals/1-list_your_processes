@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# This script displays a compact list of currently running processes
+# Ce script affiche les noms d'utilisateur et les noms de commande des processus en cours d'exécution
 
-ps aux | awk '{print $1, $9}'
+ps aux | awk 'NR > 1 {printf "%-8s %-8s\n", $1, $11}'
