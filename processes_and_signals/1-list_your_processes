@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# This script displays a list of currently running processes
+# This script displays a list of currently running processes, showing only the USER column
 
 # Print the header
-echo "USER STARTED COMMAND"
+echo "USER"
 
-# Use the ps command to list processes, format the output, and skip the header
-ps -eo user,lstart,cmd --sort=start_time | grep -v "COMMAND"
+# Use the ps command to list processes and skip the header
+ps -eo user --sort=user | grep -v "USER"
