@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# This script displays a list of currently running processes.
+# This script displays a list of currently running processes
 
-# Use the ps command to list all processes, include those without a TTY, and format the output.
-# The -e option shows all processes, and -o defines the output format.
-ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command | head -50
+# Print the header
+echo "USER STARTED COMMAND"
+
+# Use the ps command to list processes, format the output, and skip the header
+ps -eo user,lstart,cmd --sort=start_time | grep -v "COMMAND"
