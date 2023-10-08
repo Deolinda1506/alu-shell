@@ -1,2 +1,7 @@
-#!/usr/bin/env bash
-awk '{print $1,$9}' apache-access.log | sort -V | uniq -c | sort -n | perl -e 'print reverse <>'
+#!/bin/bash
+
+# Assuming your log file is named "access.log"
+LOG_FILE="access.log"
+
+# Use awk to process the log file
+awk '{count[$1" "$9]++} END {for (key in count) print count[key], key}' "$LOG_FILE" | sort -rn
